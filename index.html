@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Comité de Operaciones COFACO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#f6f9fb;
+    --card:#ffffff;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --brand:#1aa579;
+    --accent:#d9f2e7;
+    --shadow:0 8px 20px rgba(2,18,31,.10);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+  }
+
+  /* ====== Generic sections (menu & subpáginas) ====== */
+  .page{display:none; padding:24px}
+  #menu{display:block} /* fallback si JS está deshabilitado */
+
+  /* ====== Header ====== */
+  .title{
+    text-align:center;
+    font-weight:800;
+    letter-spacing:.2px;
+    margin:12px 0 24px;
+    font-size:clamp(22px,3.2vw,36px);
+  }
+
+  /* ====== Layout principal inspirado en la imagen ====== */
+  .layout{
+    max-width:1200px;
+    margin:0 auto 36px;
+    display:grid;
+    grid-template-columns: 1fr 280px 1fr;
+    gap:18px;
+    align-items:center;
+    padding:0 10px;
+  }
+
+  /* Círculo central */
+  .hub{
+    position:relative;
+    height:280px;
+    width:280px;
+    margin:auto;
+    border-radius:999px;
+    background:radial-gradient(ellipse at center, var(--accent) 0%, #c4e9db 60%, #bfe5d7 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+  }
+  .hub svg{width:118px;height:118px; opacity:.95}
+
+  /* Columnas de tarjetas */
+  .cards{display:flex; flex-direction:column; gap:16px}
+  .card{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:14px 16px 14px 62px;
+    position:relative;
+    box-shadow:var(--shadow);
+    transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer; /* mano */
+    border:1px solid #e8eef3;
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 14px 28px rgba(2,18,31,.14)}
+  .card:active{transform:translateY(0)}
+  .num{
+    position:absolute; left:14px; top:14px;
+    width:36px;height:36px;border-radius:50%;
+    background:#e7f5ee; color:#0b7b55; font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid #cfeee0;
+  }
+  .card h3{margin:0 0 4px; font-size:18px; font-weight:800}
+  .card p{margin:0; font-size:14px; color:var(--muted)}
+
+  /* ====== Subpáginas ====== */
+  .subpage{
+    max-width:980px; margin:0 auto; padding-bottom:60px;
+  }
+  .subpage h1{
+    margin:8px 0 8px;
+    font-size:clamp(22px,3.2vw,34px);
+  }
+  .subpage .lead{color:var(--muted); margin-bottom:16px}
+  .panel{
+    background:#fff; border:1px solid #e8eef3; border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:18px;
+  }
+
+  /* ====== Botón flotante ATRÁS ====== */
+  .btn-back{
+    position:fixed;
+    left:18px; top:18px;
+    background:#ff7a00; color:#fff;
+    font-weight:800; text-decoration:none;
+    padding:10px 14px; border-radius:999px;
+    box-shadow:0 10px 18px rgba(255,122,0,.25);
+    border:0; letter-spacing:.2px;
+  }
+  .btn-back:focus-visible{outline:3px solid #ffd3ac}
+
+  /* ====== Responsivo ====== */
+  @media (max-width:1024px){
+    .layout{grid-template-columns:1fr; gap:12px}
+    .hub{order:-1; width:220px; height:220px}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ===================== MENÚ PRINCIPAL ===================== -->
+<section id="menu" class="page">
+  <h1 class="title">Comité de Operaciones COFACO</h1>
+
+  <div class="layout">
+    <!-- Columna izquierda -->
+    <div class="cards">
+      <a class="card" href="#p01" aria-label="Ir a Hilandería">
+        <span class="num">01</span>
+        <h3><strong>Hilandería</strong></h3>
+        <p>Indicadores</p>
+      </a>
+
+      <a class="card" href="#p02" aria-label="Ir a Tejeduría">
+        <span class="num">02</span>
+        <h3><strong>Tejeduría</strong></h3>
+        <p>Indicadores</p>
+      </a>
+
+      <a class="card" href="#p03" aria-label="Ir a Tintorería">
+        <span class="num">03</span>
+        <h3><strong>Tintorería</strong></h3>
+        <p>Indicadores</p>
+      </a>
+
+      <a class="card" href="#p04" aria-label="Ir a PCP textil">
+        <span class="num">04</span>
+        <h3><strong>PCP textil</strong></h3>
+        <p>Indicadores</p>
+      </a>
+    </div>
+
+    <!-- Centro -->
+    <div class="hub" aria-hidden="true">
+      <!-- Ícono laptop + engranajes (SVG ligero) -->
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7A2.5 2.5 0 0 1 17.5 16h-11A2.5 2.5 0 0 1 4 13.5v-7Z" stroke="#0d5e43" stroke-width="1.4"/>
+        <path d="M3 18h18a0 0 0 0 1 0 0v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a0 0 0 0 1 0 0Z" fill="#0d5e43"/>
+        <path d="M10.9 9.3a2.2 2.2 0 1 0 2.2 2.2 2.2 2.2 0 0 0-2.2-2.2Zm4.2 2.2a3.9 3.9 0 0 1-.1.9l1.1.9-1 1.7-1.4-.5a4 4 0 0 1-.8.5l-.2 1.5h-2l-.2-1.5a4 4 0 0 1-.8-.5l-1.4.5-1-1.7 1.1-.9a3.9 3.9 0 0 1-.1-.9 3.9 3.9 0 0 1 .1-.9l-1.1-.9 1-1.7 1.4.5a4 4 0 0 1 .8-.5l.2-1.5h2l.2 1.5a4 4 0 0 1 .8.5l1.4-.5 1 1.7-1.1.9a3.9 3.9 0 0 1 .1.9Z" fill="#1aa579"/>
+      </svg>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="cards">
+      <a class="card" href="#p05" aria-label="Ir a Ingeniería de Métodos y Tiempos">
+        <span class="num">05</span>
+        <h3><strong>Ing Método y Tiempos</strong></h3>
+        <p>Indicadores</p>
+      </a>
+
+      <a class="card" href="#p06" aria-label="Ir a PCP confecciones">
+        <span class="num">06</span>
+        <h3><strong>PCP confecciones</strong></h3>
+        <p>Indicadores</p>
+      </a>
+
+      <a class="card" href="#p07" aria-label="Ir a Aseguramiento de Calidad Confecciones">
+        <span class="num">07</span>
+        <h3><strong>Aseguramiento Calidad Confecciones</strong></h3>
+        <p>Indicadores</p>
+      </a>
+
+      <a class="card" href="#p08" aria-label="Ir a Otros">
+        <span class="num">08</span>
+        <h3><strong>Otros</strong></h3>
+        <p>Presentación temas otros</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SUBPÁGINAS (PLACEHOLDERS) ===================== -->
+<section id="p01" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>Hilandería</h1>
+    <p class="lead">Indicadores</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<section id="p02" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>Tejeduría</h1>
+    <p class="lead">Indicadores</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<section id="p03" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>Tintorería</h1>
+    <p class="lead">Indicadores</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<section id="p04" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>PCP textil</h1>
+    <p class="lead">Indicadores</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<section id="p05" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>Ing Método y Tiempos</h1>
+    <p class="lead">Indicadores</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<section id="p06" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>PCP confecciones</h1>
+    <p class="lead">Indicadores</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<section id="p07" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>Aseguramiento Calidad Confecciones</h1>
+    <p class="lead">Indicadores</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<section id="p08" class="page">
+  <a class="btn-back" href="#menu">Atrás</a>
+  <div class="subpage">
+    <h1>Otros</h1>
+    <p class="lead">Presentación temas otros</p>
+    <div class="panel">Contenido en construcción.</div>
+  </div>
+</section>
+
+<script>
+  // Router muy simple: muestra sólo la sección cuyo id coincide con el hash
+  const sections = Array.from(document.querySelectorAll('.page'));
+  function showSectionFromHash(){
+    const id = (location.hash || '#menu').replace('#','');
+    const chosen = document.getElementById(id) || document.getElementById('menu');
+    sections.forEach(sec => sec.style.display = (sec === chosen ? 'block' : 'none'));
+  }
+  window.addEventListener('hashchange', showSectionFromHash);
+  window.addEventListener('DOMContentLoaded', showSectionFromHash);
+</script>
+</body>
+</html>
